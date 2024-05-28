@@ -1,4 +1,43 @@
 -------------------------------------------------------------------------------
 Test set: griddynamics.capstone.service.appointment_service.domain.AppointmentTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 s -- in griddynamics.capstone.service.appointment_service.domain.AppointmentTest
+Tests run: 9, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.022 s <<< FAILURE! -- in griddynamics.capstone.service.appointment_service.domain.AppointmentTest
+griddynamics.capstone.service.appointment_service.domain.AppointmentTest.toStringReturnsCorrectString -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Appointment{id=1, patientId=2, doctorId=3, date=2024-05-28T06:37:07.082438, details='Details'}> but was: <griddynamics.capstone.service.appointment_service.domain.Appointment@216e0771>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at griddynamics.capstone.service.appointment_service.domain.AppointmentTest.toStringReturnsCorrectString(AppointmentTest.java:77)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+griddynamics.capstone.service.appointment_service.domain.AppointmentTest.equalsReturnsTrueForSameObject -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+	at griddynamics.capstone.service.appointment_service.domain.AppointmentTest.equalsReturnsTrueForSameObject(AppointmentTest.java:52)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+griddynamics.capstone.service.appointment_service.domain.AppointmentTest.hashCodeReturnsSameHashCodeForSameObject -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <231182885> but was: <820627987>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at griddynamics.capstone.service.appointment_service.domain.AppointmentTest.hashCodeReturnsSameHashCodeForSameObject(AppointmentTest.java:70)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

@@ -1,41 +1,41 @@
 package griddynamics.capstone.service.appointment_service.domain;
 
+import griddynamics.capstone.service.patient_service.domain.Patient;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
-@Table(name = "appointments")
 public class Appointment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "patient_id")
-    private Long patientId;
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 
-    @Column(name = "doctor_id")
     private Long doctorId;
-
-    @Column(name = "date")
     private LocalDateTime date;
-
-    @Column(name = "details")
     private String details;
 
     // Default constructor
-    public Appointment() {}
+    public Appointment() {
+    }
 
-    // Parameterized constructor for easy instantiation
+    // Constructor with parameters
     public Appointment(Long id, Long patientId, Long doctorId, LocalDateTime date, String details) {
         this.id = id;
-        this.patientId = patientId;
+        this.patient = new Patient();
+        this.patient.setId(patientId);
         this.doctorId = doctorId;
         this.date = date;
         this.details = details;
     }
 
     // Getters and setters
+
     public Long getId() {
         return id;
     }
@@ -44,12 +44,12 @@ public class Appointment {
         this.id = id;
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public Long getDoctorId() {
@@ -76,29 +76,14 @@ public class Appointment {
         this.details = details;
     }
 
-    // equals and hashCode
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Appointment that = (Appointment) o;
-        return Objects.equals(id, that.id);
+    public void setPatientId(Long patientId) {
+        if (this.patient == null) {
+            this.patient = new Patient();
+        }
+        this.patient.setId(patientId);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    // toString for easy logging and debugging
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "id=" + id +
-                ", patientId=" + patientId +
-                ", doctorId=" + doctorId +
-                ", date=" + date +
-                ", details='" + details + '\'' +
-                '}';
+    public Long getPatientId() {
+        return this.patient != null ? this.patient.getId() : null;
     }
 }
