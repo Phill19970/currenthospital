@@ -10,13 +10,22 @@ import org.junit.jupiter.api.Test;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import javax.sql.DataSource;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PatientServiceTest {
     private PatientService patientService;
+
+
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -34,13 +43,16 @@ public class PatientServiceTest {
         patientService = new PatientService(patientRepository, dataSource);
     }
 
-    @Test
-    public void testDeletePatient() {
-        Patient patient = new Patient(null, "John Doe", "john.doe@example.com", "No history");
-        Patient savedPatient = patientService.createOrUpdatePatient(patient);
+    
 
-        patientService.deletePatient(savedPatient.getId());
+@Test
+public void testDeletePatient() {
+    Patient patient = new Patient(null, "John Doe", "john.doe@example.com", "No history");
+    Patient savedPatient = patientService.createOrUpdatePatient(patient);
 
-        assertThrows(NoSuchElementException.class, () -> patientService.getPatientById(savedPatient.getId()));
-    }
+    patientService.deletePatient(savedPatient.getId());
+
+    assertThrows(NoSuchElementException.class, () -> patientService.getPatientById(savedPatient.getId()));
+}
+
 }

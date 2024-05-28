@@ -3,18 +3,24 @@ package griddynamics.capstone.service.patient_service.domain;
 import griddynamics.capstone.service.appointment_service.domain.Appointment;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "patients")
 public class Patient {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(name = "medical_history")
     private String medicalHistory;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -22,18 +28,19 @@ public class Patient {
 
     // Default constructor
     public Patient() {
+        appointments = new ArrayList<>();
     }
 
-    // Constructor with parameters
+    // Parameterized constructor for easy creation of Patient objects
     public Patient(Long id, String name, String email, String medicalHistory) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.medicalHistory = medicalHistory;
+        this.appointments = new ArrayList<>();
     }
 
-    // Getters and setters
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -74,6 +81,8 @@ public class Patient {
         this.appointments = appointments;
     }
 
+
+    // equals and hashCode based on the id field to ensure uniqueness
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,6 +96,7 @@ public class Patient {
         return Objects.hash(id);
     }
 
+    // toString method for easy logging and debugging
     @Override
     public String toString() {
         return "Patient{" +
