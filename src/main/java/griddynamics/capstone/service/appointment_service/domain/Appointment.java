@@ -4,6 +4,7 @@ import griddynamics.capstone.service.patient_service.domain.Patient;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class Appointment {
@@ -85,5 +86,29 @@ public class Appointment {
 
     public Long getPatientId() {
         return this.patient != null ? this.patient.getId() : null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Appointment that = (Appointment) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", patientId=" + (patient != null ? patient.getId() : null) +
+                ", doctorId=" + doctorId +
+                ", date=" + date +
+                ", details='" + details + '\'' +
+                '}';
     }
 }

@@ -72,8 +72,9 @@ class AppointmentTest {
 
     @Test
     void toStringReturnsCorrectString() {
-        Appointment appointment = new Appointment(1L, 2L, 3L, LocalDateTime.now(), "Details");
-        String expected = "Appointment{id=1, patientId=2, doctorId=3, date=" + appointment.getDate() + ", details='Details'}";
+        LocalDateTime now = LocalDateTime.now();
+        Appointment appointment = new Appointment(1L, 2L, 3L, now, "Details");
+        String expected = "Appointment{id=1, patientId=2, doctorId=3, date=" + now + ", details='Details'}";
         assertEquals(expected, appointment.toString());
     }
 }
