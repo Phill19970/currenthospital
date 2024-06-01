@@ -1,10 +1,12 @@
 package griddynamics.capstone.service.medical_service.repository;
 
 import griddynamics.capstone.service.medical_service.domain.Medication;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class MedicationRepositoryImpl implements MedicationRepository {
     private final Map<Long, Medication> medicationsById = new HashMap<>();
     private final AtomicLong idGenerator = new AtomicLong();

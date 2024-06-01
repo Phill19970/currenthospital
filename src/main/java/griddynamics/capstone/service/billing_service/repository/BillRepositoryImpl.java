@@ -1,11 +1,13 @@
 package griddynamics.capstone.service.billing_service.repository;
 
 import griddynamics.capstone.service.billing_service.domain.Bill;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+@Repository
 public class BillRepositoryImpl implements BillRepository {
     private final Map<Long, Bill> billsById = new HashMap<>();
     private final AtomicLong idGenerator = new AtomicLong();

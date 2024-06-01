@@ -2,16 +2,19 @@ package griddynamics.capstone.service.billing_service.service;
 
 import griddynamics.capstone.service.billing_service.domain.Bill;
 import griddynamics.capstone.service.billing_service.repository.BillRepository;
-import griddynamics.capstone.service.billing_service.repository.BillRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BillingService {
     private final BillRepository billRepository;
 
-    public BillingService() {
-        this.billRepository = new BillRepositoryImpl();
+    @Autowired
+    public BillingService(BillRepository billRepository) {
+        this.billRepository = billRepository;
     }
 
     public Bill createOrUpdateBill(Bill bill) {

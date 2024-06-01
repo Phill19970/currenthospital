@@ -1,11 +1,12 @@
 package griddynamics.capstone.service.appointment_service.repository;
 
 import griddynamics.capstone.service.appointment_service.domain.Appointment;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
+@Repository
 public class AppointmentRepositoryImpl implements AppointmentRepository {
     private final Map<Long, Appointment> appointmentsById = new HashMap<>();
     private final AtomicLong idGenerator = new AtomicLong();
@@ -31,9 +32,13 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
 
     @Override
     public List<Appointment> findAllByPatientId(Long patientId) {
-        return appointmentsById.values().stream()
-                .filter(appointment -> Objects.equals(appointment.getPatientId(), patientId))
-                .collect(Collectors.toList());
+        List<Appointment> result = new ArrayList<>();
+        for (Appointment appointment : appointmentsById.values()) {
+            if (appointment.getPatientId().equals(patientId)) {
+                result.add(appointment);
+            }
+        }
+        return result;
     }
 
     @Override

@@ -1,4 +1,4 @@
-# My Capstone Project
+# Kharief Marson's Capstone Project
 
 ## Grid Dynamics
 

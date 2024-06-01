@@ -2,16 +2,19 @@ package griddynamics.capstone.service.medical_service.service;
 
 import griddynamics.capstone.service.medical_service.domain.Medication;
 import griddynamics.capstone.service.medical_service.repository.MedicationRepository;
-import griddynamics.capstone.service.medical_service.repository.MedicationRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MedicationService {
     private final MedicationRepository medicationRepository;
 
-    public MedicationService() {
-        this.medicationRepository = new MedicationRepositoryImpl();
+    @Autowired
+    public MedicationService(MedicationRepository medicationRepository) {
+        this.medicationRepository = medicationRepository;
     }
 
     public Medication createOrUpdateMedication(Medication medication) {

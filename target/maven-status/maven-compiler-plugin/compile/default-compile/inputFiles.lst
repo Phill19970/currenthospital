@@ -13,6 +13,7 @@
 /Users/khariefmarson/capstone/src/main/java/griddynamics/capstone/service/patient_service/service/PatientService.java
 /Users/khariefmarson/capstone/src/main/java/griddynamics/capstone/service/appointment_service/domain/Appointment.java
 /Users/khariefmarson/capstone/src/main/java/griddynamics/capstone/service/medical_service/repository/MedicationRepositoryImpl.java
+/Users/khariefmarson/capstone/src/main/java/griddynamics/capstone/config/AppConfig.java
 /Users/khariefmarson/capstone/src/main/java/griddynamics/capstone/service/billing_service/repository/BillRepository.java
 /Users/khariefmarson/capstone/src/main/java/griddynamics/capstone/service/billing_service/repository/BillRepositoryImpl.java
 /Users/khariefmarson/capstone/src/main/java/griddynamics/capstone/service/appointment_service/repository/AppointmentRepositoryImpl.java

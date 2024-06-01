@@ -2,16 +2,19 @@ package griddynamics.capstone.service.appointment_service.service;
 
 import griddynamics.capstone.service.appointment_service.domain.Appointment;
 import griddynamics.capstone.service.appointment_service.repository.AppointmentRepository;
-import griddynamics.capstone.service.appointment_service.repository.AppointmentRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
 
-    public AppointmentService() {
-        this.appointmentRepository = new AppointmentRepositoryImpl();
+    @Autowired
+    public AppointmentService(AppointmentRepository appointmentRepository) {
+        this.appointmentRepository = appointmentRepository;
     }
 
     public Appointment createOrUpdateAppointment(Appointment appointment) {
