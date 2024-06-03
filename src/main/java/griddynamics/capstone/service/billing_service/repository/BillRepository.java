@@ -1,14 +1,14 @@
 package griddynamics.capstone.service.billing_service.repository;
 
 import griddynamics.capstone.service.billing_service.domain.Bill;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface BillRepository {
-    Bill save(Bill bill);
-    Optional<Bill> findById(Long id);
-    void deleteById(Long id);
+@Repository
+public interface BillRepository extends JpaRepository<Bill, Long> {
+    List<Bill> findByPatientId(Long patientId);
+
     List<Bill> findAllByPatientId(Long patientId);
-    List<Bill> findAll();
 }

@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class AppointmentService {
+
     private final AppointmentRepository appointmentRepository;
 
     @Autowired
@@ -33,7 +34,7 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
-    public List<Appointment> findAllAppointmentsByPatientId(Long patientId) {
-        return appointmentRepository.findAllByPatientId(patientId);
+    public List<Appointment> findAppointmentsByPatientId(Long patientId) {
+        return appointmentRepository.findByPatientId(patientId);
     }
 }

@@ -2,6 +2,11 @@ package griddynamics.capstone.service.patient_service.repository;
 
 import griddynamics.capstone.service.patient_service.domain.Patient;
 import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -9,6 +14,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Repository
 public class PatientRepositoryImpl implements PatientRepository {
@@ -70,6 +76,20 @@ public class PatientRepositoryImpl implements PatientRepository {
     }
 
     @Override
+    public boolean existsById(Long id) {
+        String sql = "SELECT 1 FROM patients WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public Optional<Patient> findByEmail(String email) {
         String sql = "SELECT * FROM patients WHERE email = ?";
         try (Connection connection = dataSource.getConnection();
@@ -103,6 +123,32 @@ public class PatientRepositoryImpl implements PatientRepository {
     }
 
     @Override
+    public void delete(Patient entity) {
+        deleteById(entity.getId());
+    }
+
+    @Override
+    public void deleteAllById(Iterable<? extends Long> ids) {
+        ids.forEach(this::deleteById);
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends Patient> entities) {
+        entities.forEach(this::delete);
+    }
+
+    @Override
+    public void deleteAll() {
+        String sql = "DELETE FROM patients";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Patient> findAll() {
         List<Patient> patients = new ArrayList<>();
         String sql = "SELECT * FROM patients";
@@ -121,5 +167,137 @@ public class PatientRepositoryImpl implements PatientRepository {
             e.printStackTrace();
         }
         return patients;
+    }
+
+    @Override
+    public List<Patient> findAll(Sort sort) {
+        throw new UnsupportedOperationException("Sorting not implemented");
+    }
+
+    @Override
+    public List<Patient> findAllById(Iterable<Long> ids) {
+        List<Patient> patients = new ArrayList<>();
+        String sql = "SELECT * FROM patients WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            for (Long id : ids) {
+                statement.setLong(1, id);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    Patient patient = new Patient();
+                    patient.setId(resultSet.getLong("id"));
+                    patient.setName(resultSet.getString("name"));
+                    patient.setEmail(resultSet.getString("email"));
+                    patient.setMedicalHistory(resultSet.getString("medical_history"));
+                    patients.add(patient);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return patients;
+    }
+
+    @Override
+    public long count() {
+        String sql = "SELECT COUNT(*) FROM patients";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public <S extends Patient> List<S> saveAll(Iterable<S> entities) {
+        List<S> result = new ArrayList<>();
+        for (S entity : entities) {
+            result.add((S) save(entity));
+        }
+        return result;
+    }
+
+    @Override
+    public void flush() {
+    }
+
+    @Override
+    public <S extends Patient> S saveAndFlush(S entity) {
+        return (S) save(entity);
+    }
+
+    @Override
+    public <S extends Patient> List<S> saveAllAndFlush(Iterable<S> entities) {
+        return saveAll(entities);
+    }
+
+    @Override
+    public void deleteAllInBatch(Iterable<Patient> entities) {
+        deleteAll(entities);
+    }
+
+    @Override
+    public void deleteAllByIdInBatch(Iterable<Long> ids) {
+        deleteAllById(ids);
+    }
+
+    @Override
+    public void deleteAllInBatch() {
+        deleteAll();
+    }
+
+    @Override
+    public Patient getOne(Long id) {
+        return findById(id).orElse(null);
+    }
+
+    @Override
+    public Patient getById(Long id) {
+        return findById(id).orElse(null);
+    }
+
+    @Override
+    public <S extends Patient> Optional<S> findOne(Example<S> example) {
+        throw new UnsupportedOperationException("Example queries not implemented");
+    }
+
+    @Override
+    public <S extends Patient> List<S> findAll(Example<S> example) {
+        throw new UnsupportedOperationException("Example queries not implemented");
+    }
+
+    @Override
+    public <S extends Patient> List<S> findAll(Example<S> example, Sort sort) {
+        throw new UnsupportedOperationException("Example queries not implemented");
+    }
+
+    @Override
+    public <S extends Patient> Page<S> findAll(Example<S> example, Pageable pageable) {
+        throw new UnsupportedOperationException("Example queries not implemented");
+    }
+
+    @Override
+    public <S extends Patient> long count(Example<S> example) {
+        throw new UnsupportedOperationException("Example queries not implemented");
+    }
+
+    @Override
+    public <S extends Patient> boolean exists(Example<S> example) {
+        throw new UnsupportedOperationException("Example queries not implemented");
+    }
+
+    @Override
+    public <S extends Patient, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+        throw new UnsupportedOperationException("Example queries not implemented");
+    }
+
+    @Override
+    public Page<Patient> findAll(Pageable pageable) {
+        throw new UnsupportedOperationException("Paging not implemented");
     }
 }

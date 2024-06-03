@@ -1,14 +1,12 @@
 package griddynamics.capstone.service.patient_service.repository;
 
 import griddynamics.capstone.service.patient_service.domain.Patient;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
-public interface PatientRepository {
-    Patient save(Patient patient); // Create or Update
-    Optional<Patient> findById(Long id);
+@Repository
+public interface PatientRepository extends JpaRepository<Patient, Long> {
     Optional<Patient> findByEmail(String email);
-    void deleteById(Long id);
-    List<Patient> findAll();
 }

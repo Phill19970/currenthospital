@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class BillingService {
+
     private final BillRepository billRepository;
 
     @Autowired
@@ -33,7 +34,7 @@ public class BillingService {
         return billRepository.findAll();
     }
 
-    public List<Bill> findAllBillsByPatientId(Long patientId) {
-        return billRepository.findAllByPatientId(patientId);
+    public List<Bill> findBillsByPatientId(Long patientId) {
+        return billRepository.findByPatientId(patientId);
     }
 }

@@ -18,4 +18,5 @@ griddynamics/capstone/service/appointment_service/domain/Appointment.class
 griddynamics/capstone/service/billing_service/repository/BillRepositoryImpl.class
 griddynamics/capstone/service/CounterService.class
 griddynamics/capstone/service/appointment_service/repository/AppointmentRepository.class
+griddynamics/capstone/PatientServiceApplication.class
 griddynamics/capstone/service/medical_service/repository/MedicationRepository.class

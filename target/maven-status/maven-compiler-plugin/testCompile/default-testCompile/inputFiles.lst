@@ -1,3 +1,4 @@
+/Users/khariefmarson/capstone/src/test/java/griddynamics/capstone/service/patient_service/JpaEntityLifecycleTest.java
 /Users/khariefmarson/capstone/src/test/java/griddynamics/capstone/service/appointment_service/domain/AppointmentTest.java
 /Users/khariefmarson/capstone/src/test/java/griddynamics/capstone/service/patient_service/service/PatientServiceTest.java
 /Users/khariefmarson/capstone/src/test/java/griddynamics/capstone/service/billing_service/domain/BillTest.java

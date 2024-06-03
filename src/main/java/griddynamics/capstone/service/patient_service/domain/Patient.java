@@ -81,7 +81,6 @@ public class Patient {
         this.appointments = appointments;
     }
 
-
     // equals and hashCode based on the id field to ensure uniqueness
     @Override
     public boolean equals(Object o) {

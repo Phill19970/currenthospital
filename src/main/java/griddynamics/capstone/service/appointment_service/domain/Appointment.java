@@ -1,5 +1,7 @@
 package griddynamics.capstone.service.appointment_service.domain;
 
+import griddynamics.capstone.service.patient_service.domain.Patient;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -74,6 +76,15 @@ public class Appointment {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    // New methods to set description and patient
+    public void setDescription(String description) {
+        this.details = description;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patientId = patient.getId();
     }
 
     // equals and hashCode
