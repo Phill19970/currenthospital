@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: griddynamics.capstone.service.appointment_service.service.AppointmentServiceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.235 s <<< FAILURE! -- in griddynamics.capstone.service.appointment_service.service.AppointmentServiceTest
-griddynamics.capstone.service.appointment_service.service.AppointmentServiceTest.testCreateOrUpdateAppointment -- Time elapsed: 0.008 s <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.143 s <<< FAILURE! -- in griddynamics.capstone.service.appointment_service.service.AppointmentServiceTest
+griddynamics.capstone.service.appointment_service.service.AppointmentServiceTest.testCreateOrUpdateAppointment -- Time elapsed: 0.003 s <<< ERROR!
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)

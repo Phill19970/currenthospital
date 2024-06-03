@@ -1,5 +1,4 @@
 griddynamics/capstone/service/patient_service/service/PatientServiceTest.class
-griddynamics/capstone/service/appointment_service/service/AppointmentServiceTest.class
 griddynamics/capstone/service/patient_service/domain/PatientTest.class
 griddynamics/capstone/SomeServiceTest.class
 griddynamics/capstone/service/medical_service/domain/MedicationTest.class
